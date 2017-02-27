@@ -49,8 +49,7 @@ ShaderGenerator.prototype = {
         // when inheriting the class
         // Faster && Flexiblier
         var libName = attribute.libraryName();
-        if ( libName !== 'osg' && libName !== 'osgShadow' && libName !== 'osgAnimation' )
-            return true;
+        if ( !this._ShaderCompiler.supportLibraryName[ libName ] ) return true;
 
         // works for attribute that contains isEnabled
         // Light, Shadow. It let us to filter them to build a shader if not enabled
@@ -70,13 +69,13 @@ ShaderGenerator.prototype = {
             var type = cacheType[ j ];
             var attributeStack = _attributeArray[ type ];
             if ( !attributeStack ) continue;
-            var attr = attributeStack.lastApplied;
 
-            if ( !attr || this.filterAttributeTypes( attr ) )
-                continue;
+            var attribute = attributeStack.lastApplied;
 
-            hash = hash + attr.getHash();
-            list.push( attr );
+            if ( !attribute || this.filterAttributeTypes( attribute ) ) continue;
+
+            hash += attribute.getHash();
+            list.push( attribute );
         }
 
         return hash;
@@ -90,9 +89,14 @@ ShaderGenerator.prototype = {
 
         var cacheType = this._ShaderCompiler.validAttributeTypeMemberCache;
         for ( var i = 0, l = cacheType.length; i < l; i++ ) {
-            var type = cacheType[i];
-            var attributeStack = state._attributeArray[type];
-            if ( attributeStack && attributeStack.lastApplied ) hash += attributeStack.lastApplied.getHash();
+            var type = cacheType[ i ];
+            var attributeStack = state._attributeArray[ type ];
+            if ( attributeStack ) {
+                var attribute = attributeStack.lastApplied;
+                if ( !attribute || !this.filterAttributeTypes( attribute ) ) continue;
+
+                hash += attributeStack.lastApplied.getHash();
+            }
         }
 
         return hash;
@@ -113,14 +117,14 @@ ShaderGenerator.prototype = {
             for ( var i = 0; i < cacheType.length; i++ ) {
                 var type = cacheType[ i ];
                 var attributeStack = textureUnit[ type ];
-                if ( attributeStack && attributeStack.lastApplied ) {
-                    var lastApplied = attributeStack.lastApplied;
+                if ( attributeStack ) {
+                    var attribute = attributeStack.lastApplied;
+
+                    if ( !attribute || this.filterAttributeTypes( attribute ) || attribute.isTextureNull() ) continue;
 
                     // we check to filter texture null in hash
-                    // but it's probably better to just set the hash correctly of a tetxure null
-                    if ( lastApplied.isTextureNull && lastApplied.isTextureNull() ) continue;
-
-                    hash += lastApplied.getHash();
+                    // but it's probably better to just set the hash correctly of a tetxure null, to remove this custom code
+                    hash += attribute.getHash();
                 }
             }
         }
@@ -149,15 +153,12 @@ ShaderGenerator.prototype = {
                 var attributeStack = _attributeArrayForUnit[ type ];
                 if ( !attributeStack ) continue;
 
-                var attr = attributeStack.lastApplied;
-                if ( !attr || this.filterAttributeTypes( attr ) )
+                var attribute = attributeStack.lastApplied;
+                if ( !attribute || this.filterAttributeTypes( attribute ) || attribute.isTextureNull() )
                     continue;
 
-                if ( attr.isTextureNull() )
-                    continue;
-
-                hash += attr.getHash();
-                list[ i ].push( attr );
+                hash += attribute.getHash();
+                list[ i ].push( attribute );
             }
         }
         return hash;

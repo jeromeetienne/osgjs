@@ -71,6 +71,11 @@ Compiler.validTextureAttributeTypeMember = [
 ];
 Compiler.validTextureAttributeTypeMember.forEach( MACROUTILS.getOrCreateTextureStateAttributeTypeMemberIndexFromName );
 
+Compiler.supportLibraryName = {
+    osg: true,
+    osgAnimation: true,
+    osgShadow: true
+};
 
 Compiler.prototype = MACROUTILS.extend( {}, CompilerVertex, CompilerFragment, {
 
