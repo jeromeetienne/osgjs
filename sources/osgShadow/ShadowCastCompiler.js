@@ -15,6 +15,8 @@ CompilerShadowCast.validAttributeTypeMember = [
 ];
 CompilerShadowCast.validAttributeTypeMember.forEach( MACROUTILS.getOrCreateStateAttributeTypeMemberIndexFromName );
 
+CompilerShadowCast.supportLibraryName = Compiler.supportLibraryName;
+
 CompilerShadowCast.prototype = MACROUTILS.objectInherit( Compiler.prototype, {
     getCompilerName: function () {
         return 'ShadowCast';
