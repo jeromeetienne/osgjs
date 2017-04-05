@@ -166,7 +166,7 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
             return object;
 
         } else if ( ( back.value & StateAttribute.OVERRIDE ) &&
-                    !( maskValue & StateAttribute.PROTECTED ) ) {
+            !( maskValue & StateAttribute.PROTECTED ) ) {
 
             return back.object;
 
@@ -361,8 +361,8 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
         var stateSetProgramPair = stateset._attributeArray[ this._programType ];
 
         if ( ( programStack.values.length !== 0 && programStack.back.value !== StateAttribute.OFF ) ||
-             ( stateSetProgramPair && stateSetProgramPair.getValue() !== StateAttribute.OFF )
-           ) return undefined;
+            ( stateSetProgramPair && stateSetProgramPair.getValue() !== StateAttribute.OFF )
+        ) return undefined;
 
 
         var stateSetGeneratorPair = stateset.getShaderGeneratorPair();
@@ -373,7 +373,7 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
 
             var maskValue = stateSetGeneratorPair.getValue();
             var stateSetGenerator = stateSetGeneratorPair.getShaderGeneratorName();
-            generator = this._evaluateOverrideObjectOnStack (this._shaderGeneratorNames, stateSetGenerator , maskValue );
+            generator = this._evaluateOverrideObjectOnStack( this._shaderGeneratorNames, stateSetGenerator, maskValue );
 
         } else if ( generatorStack.values.length ) {
 
@@ -447,7 +447,6 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
 
     _applyTextureAttributeMapListStateSet: function ( _textureAttributesArrayList, stateSetTextureAttributeArrayList ) {
 
-        var gl = this._graphicContext;
         var _textureAttributeArray;
 
         var stateSetTextureAttributeLength, stateTextureAttributeLength;
@@ -740,7 +739,6 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
         this.lastAppliedAttributeLength = 0;
         var attributeStack;
         var validAttributeType = this._currentShaderGenerator ? this._currentShaderGenerator.getShaderCompiler().validAttributeTypeCache : undefined;
-        var bitfield = 0;
         for ( var i = 0, l = _attributeArray.length; i < l; i++ ) {
 
             attributeStack = _attributeArray[ i ];
@@ -772,12 +770,14 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
         }
     },
 
-    getObjectPair: (function() {
+    getObjectPair: ( function () {
         return function ( object, value ) {
-            return { value: value,
-                     object: object };
+            return {
+                value: value,
+                object: object
+            };
         };
-    })(),
+    } )(),
 
 
     pushUniformsList: function ( uniformMap, stateSetUniformMap ) {
@@ -1185,11 +1185,11 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
 
     },
 
-    _applyCustomProgramUniforms: ( function ( ) {
+    _applyCustomProgramUniforms: ( function () {
 
         var activeUniformsList = [];
 
-        return function ( program,  stateset ) {
+        return function ( program, stateset ) {
 
             // custom program so we will iterate on uniform from the program and apply them
             // but in order to be able to use Attribute in the state graph we will check if
@@ -1438,7 +1438,7 @@ MACROUTILS.createPrototypeClass( State, MACROUTILS.objectInherit( Object.prototy
 
             if ( !uniformStack ) {
 
-                uniform = stateSetUniform.getUniform();
+                uniform = stateset.uniforms[ name ].getUniform();
                 this._createAttributeStack( uniformMapStack, name, uniform );
 
             } else if ( hasStateSetUniformPair ) {

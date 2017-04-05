@@ -3,7 +3,6 @@ var MACROUTILS = require( 'osg/Utils' );
 var StateAttribute = require( 'osg/StateAttribute' );
 var Uniform = require( 'osg/Uniform' );
 var Map = require( 'osg/Map' );
-var Notify = require( 'osg/notify' );
 
 
 /**

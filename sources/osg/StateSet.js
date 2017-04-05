@@ -305,7 +305,7 @@ MACROUTILS.createPrototypeClass( StateSet, MACROUTILS.objectInherit( Object.prot
             this._activeTextureAttributeUnit.push( i );
             for ( var j = 0, k = attributeList.length; j < k; j++ ) {
                 if ( attributeList[ j ] &&
-                     this._activeTextureAttribute.indexOf( j ) === -1 ) this._activeTextureAttribute.push( j );
+                    this._activeTextureAttribute.indexOf( j ) === -1 ) this._activeTextureAttribute.push( j );
             }
         }
     },

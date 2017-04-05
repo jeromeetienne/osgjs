@@ -38,7 +38,7 @@
             return this.getType() + this._attributeEnable.toString();
         }
 
-    } ) , 'osg', 'Ramp' );
+    } ), 'osg', 'Ramp' );
 
 
 

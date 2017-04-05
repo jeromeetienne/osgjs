@@ -238,7 +238,8 @@ Utils.getOrCreateStateAttributeTypeMemberIndex = function ( attribute ) {
 
     if ( attribute._attributeTypeIndex !== undefined ) return attribute._attributeTypeIndex;
     var typeMember = attribute.getTypeMember();
-    return attribute._attributeTypeIndex = Utils.getOrCreateStateAttributeTypeMemberIndexFromName( typeMember );
+    attribute._attributeTypeIndex = Utils.getOrCreateStateAttributeTypeMemberIndexFromName( typeMember );
+    return attribute._attributeTypeIndex;
 };
 
 Utils.getOrCreateStateAttributeTypeMemberIndexFromName = function ( typeMemberName ) {
@@ -255,7 +256,8 @@ Utils.getOrCreateTextureStateAttributeTypeMemberIndex = function ( attribute ) {
 
     if ( attribute._attributeTypeIndex !== undefined ) return attribute._attributeTypeIndex;
     var typeMember = attribute.getTypeMember();
-    return attribute._attributeTypeIndex = Utils.getOrCreateTextureStateAttributeTypeMemberIndexFromName( typeMember );
+    attribute._attributeTypeIndex = Utils.getOrCreateTextureStateAttributeTypeMemberIndexFromName( typeMember );
+    return attribute._attributeTypeIndex;
 };
 
 Utils.getOrCreateTextureStateAttributeTypeMemberIndexFromName = function ( typeMemberName ) {

@@ -46,7 +46,7 @@
         }
 
 
-    } ) , 'osg', 'Negatif' );
+    } ), 'osg', 'Negatif' );
 
 
     // this node will call a function negatif in the shader
