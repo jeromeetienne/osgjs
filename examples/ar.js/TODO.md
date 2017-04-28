@@ -1,0 +1,1 @@
+- remove as much as possible of three.js
