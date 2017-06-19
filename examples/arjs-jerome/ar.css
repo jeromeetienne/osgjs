@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+}
+
+
+#controls {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    padding: -35px;
+}
+
+#ViewContainer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+}
+
+
+#model {
+    width: 220px;
+}
+
+#rasterCanvas {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: none;
+}

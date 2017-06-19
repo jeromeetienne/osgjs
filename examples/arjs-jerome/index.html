@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AR.js</title>
+    <link rel="stylesheet" type="text/css" href="../templates/css/base.css">
+    <link rel="stylesheet" type="text/css" href="ar.css">
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../vendors/core.js"></script>
+    <script type="text/javascript" src="../vendors/rStats.js"></script>
+    <script type="text/javascript" src="../vendors/rStats.extras.js"></script>
+    <script type="text/javascript" src="../vendors/bluebird-2.10.2.js"></script>
+    <script type="text/javascript" src="../vendors/hammer-2.0.4.js"></script>
+    <script type="text/javascript" src="../vendors/leap.js"></script>
+    <script type="text/javascript" src="../vendors/gunzip.min.js"></script>
+    <script type="text/javascript" src="../../builds/dist/OSG.js"></script>
+
+    <script type="text/javascript" src="vendor/jsartoolkit5/build/artoolkit.debug.js"></script>
+    <script type="text/javascript" src="vendor/jsartoolkit5/js/artoolkit.api.js"></script>
+
+
+</head>
+
+
+<body class="osgjs-theme-dark">
+
+  <video id="video"  autoplay>
+   <source src="test.webm" type="video/mp4"> !
+</video>
+
+  <img id="placeholder" src="images/img.jpg">
+
+  <div id="ViewContainer" style="height:800px;width:600px;">
+    <!-- very important change the size of the parent element instead-->
+    <canvas id="View" style="height:100%;width:100%;" oncontextmenu="return false;"></canvas>
+  </div>
+
+  <div id="controls" >
+
+            <p>Please Allow Camera autorisation popup</p>
+            <select id="videoSource"></select>
+                                      
+            <button id="capture-button">play</button>
+            <button id="stop-button">stop</button>           
+        </div>
+
+        <div id="debug">
+
+        </div>
+  <div class="osgjs-info osgjs-info-dark">
+
+    <a href="http://osgjs.org/" class="osgjs-powered" title="Powered by OSG.JS">
+      <img src="http://osgjs.org/assets/logo.png" alt="" width="32" height="32">
+      <strong>OSG.JS</strong>
+    </a>
+
+    <div class="osgjs-description">
+      Demonstrate how use AR.js in osgjs
+    </div>
+
+  </div>
+
+    <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
